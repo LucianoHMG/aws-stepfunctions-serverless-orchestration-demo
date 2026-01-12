@@ -1,0 +1,92 @@
+{
+  "Comment": "Serverless orchestration demo with Lambda, S3, DynamoDB, API Gateway and SNS",
+  "StartAt": "ProcessData",
+  "States": {
+    "ProcessData": {
+      "Type": "Task",
+      "Resource": "${ProcessDataFunctionArn}",
+      "Next": "ParallelChoice",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "HandleError"
+        }
+      ]
+    },
+    "ParallelChoice": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "WriteToS3",
+          "States": {
+            "WriteToS3": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::aws-sdk:s3:putObject",
+              "Parameters": {
+                "Bucket": "${BucketName}",
+                "Key.$": "States.Format('output/{}.json', $.id)",
+                "Body.$": "$"
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "WriteToDynamoDB",
+          "States": {
+            "WriteToDynamoDB": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::dynamodb:putItem",
+              "Parameters": {
+                "TableName": "${TableName}",
+                "Item": {
+                  "id": { "S.$": "$.id" },
+                  "payload": { "S.$": "States.JsonToString($)" }
+                }
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "CallApiGateway",
+          "States": {
+            "CallApiGateway": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::apigateway:invoke",
+              "Parameters": {
+                "ApiEndpoint": "${ApiEndpoint}",
+                "Method": "POST",
+                "Stage": "${ApiStage}",
+                "Path": "/process",
+                "RequestBody.$": "$"
+              },
+              "End": true
+            }
+          }
+        }
+      ],
+      "Next": "Finalize"
+    },
+    "HandleError": {
+      "Type": "Task",
+      "Resource": "${HandleErrorFunctionArn}",
+      "Next": "Notify",
+      "ResultPath": "$.error"
+    },
+    "Finalize": {
+      "Type": "Task",
+      "Resource": "${FinalizeFunctionArn}",
+      "Next": "Notify"
+    },
+    "Notify": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "${SnsTopicArn}",
+        "Message.$": "States.JsonToString($)"
+      },
+      "End": true
+    }
+  }
+}
