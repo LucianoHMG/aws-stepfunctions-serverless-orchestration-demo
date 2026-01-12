@@ -1,0 +1,168 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS Step Functions serverless orchestration demo with Lambda, S3, DynamoDB,
+  API Gateway and SNS integration.
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    Runtime: python3.11
+    Environment:
+      Variables:
+        POWERTOOLS_SERVICE_NAME: step-functions-demo
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: stepfunctions-demo-bucket
+    Description: S3 bucket name for output files
+
+  TableName:
+    Type: String
+    Default: stepfunctions-demo-table
+    Description: DynamoDB table name
+
+  SnsTopicName:
+    Type: String
+    Default: stepfunctions-demo-notifications
+    Description: SNS topic name for notifications
+
+Resources:
+  # S3 Bucket
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${BucketName}-${AWS::AccountId}'
+      VersioningConfiguration:
+        Status: Enabled
+
+  # DynamoDB Table
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub '${TableName}-${AWS::StackName}'
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+
+  # SNS Topic
+  SnsNotificationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub '${SnsTopicName}-${AWS::StackName}'
+      DisplayName: Step Functions Demo Notifications
+
+  # Lambda Functions
+  ProcessDataFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/process-data/
+      Handler: app.lambda_handler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+
+  FinalizeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/finalize/
+      Handler: app.lambda_handler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+
+  HandleErrorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../src/handle-error/
+      Handler: app.lambda_handler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+
+  # IAM Role for Step Functions
+  StepFunctionsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: StepFunctionsPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource:
+                  - !GetAtt ProcessDataFunction.Arn
+                  - !GetAtt FinalizeFunction.Arn
+                  - !GetAtt HandleErrorFunction.Arn
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                Resource: !Sub '${S3Bucket.Arn}/*'
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                Resource: !GetAtt DynamoDBTable.Arn
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: !Ref SnsNotificationTopic
+
+Outputs:
+  ProcessDataFunctionArn:
+    Description: ProcessData Lambda Function ARN
+    Value: !GetAtt ProcessDataFunction.Arn
+
+  FinalizeFunctionArn:
+    Description: Finalize Lambda Function ARN
+    Value: !GetAtt FinalizeFunction.Arn
+
+  HandleErrorFunctionArn:
+    Description: HandleError Lambda Function ARN
+    Value: !GetAtt HandleErrorFunction.Arn
+
+  S3BucketName:
+    Description: S3 Bucket Name
+    Value: !Ref S3Bucket
+
+  DynamoDBTableName:
+    Description: DynamoDB Table Name
+    Value: !Ref DynamoDBTable
+
+  SnsTopicArn:
+    Description: SNS Topic ARN
+    Value: !Ref SnsNotificationTopic
